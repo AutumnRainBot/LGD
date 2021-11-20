@@ -8,6 +8,7 @@ sc = nmap.PortScanner()
 def main():
     print("""         
 
+    
  ██▓      ▄████ ▓█████▄ 
 ▓██▒     ██▒ ▀█▒▒██▀ ██▌
 ▒██░    ▒██░▄▄▄░░██   █▌
@@ -18,19 +19,21 @@ def main():
   ░ ░   ░ ░   ░  ░ ░  ░ 
     ░  ░      ░    ░    
                  ░      
-
                     by LGDMomo
      """)
     
-    n = input(" 1- Scan Network    \n 2- Vuln Scan      \n 3- Exploit      \n    Quelle option chef : ")
+    n = input(" 1- Scan Network    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adress  \n Choose an option : ")
     if n == '1':
         nmap()
     if n == '2':
         vuln()
     if n == '3':
         os.system('msfconsole')
+    
+    if n == '4':
+        test()
     else:
-        print("autre chiffre ")
+        print("Entrez une bonne option")
 
 
 
@@ -39,18 +42,35 @@ def main():
 
 
 def nmap():
-        print("Scan Menu")
+        print("Network Scanning")
         ip = input("Ip ? : ")
-        sc.scan(ip, '1-9500')
-        print(sc[ip]['tcp'].keys())
+        print("Network Ip = ",ip)
+        sc.scan(ip , '20,53,119,123,143,14,123,143,161,194,21,80,443,22,110,995,143,993,25,26,587,3306,2082,2083,2086,2087,2095,2096,2077,2078,8082,8888,9500,1723', arguments='-Pn')
+        for host in sc.all_hosts():
+            print("-----------------------------------------------------")
+            print('Host : %s (%s)' % (host, sc[host].hostname()))
+            print('State : %s' % sc[host].state())
+            for proto in sc[host].all_protocols():
+               
+                lport = sc[host][proto].keys()
+                for port in lport:
+                    print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
+                
+                print('-----------------------------------------------------')
         main()
 
 
 
 def vuln():
-    print("On veux pas des vuln nous ??")
-    ip = input("L'ip bg ? : ")
-    print(os.system('nmap - sV --script=vuln'+ip))
+    print("Vulnerabilities Scanning")
+    ip = input("Ip bg ? : ")
+    print(os.system('nmap - sV --script vuln '+ip))
+    main()
+
+def test():
+    print("Ping")
+    ip = input("Ip : ")
+    os.system('ping '+ip)
     main()
 
 
