@@ -47,7 +47,7 @@ def nmap():
         print("Network Scanning")
         ip = input("Ip ? : ")
         print("Network Ip = ",ip)
-        sc.scan(ip , '20,53,119,21,80,443,8082,8888,9500,1723')
+        sc.scan(ip ,arguments='-p 20,53,119,21,80,443,8082,8888,9500,1723')
         for host in sc.all_hosts():
             print("-----------------------------------------------------")
             print('Host : %s (%s)' % (host, sc[host].hostname()))
