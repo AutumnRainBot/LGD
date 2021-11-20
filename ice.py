@@ -8,11 +8,18 @@ sc = nmap.PortScanner()
 def main():
     print("""         
 
+ ██▓      ▄████ ▓█████▄ 
+▓██▒     ██▒ ▀█▒▒██▀ ██▌
+▒██░    ▒██░▄▄▄░░██   █▌
+▒██░    ░▓█  ██▓░▓█▄   ▌
+░██████▒░▒▓███▀▒░▒████▓ 
+░ ▒░▓  ░ ░▒   ▒  ▒▒▓  ▒ 
+░ ░ ▒  ░  ░   ░  ░ ▒  ▒ 
+  ░ ░   ░ ░   ░  ░ ░  ░ 
+    ░  ░      ░    ░    
+                 ░      
 
                     by LGDMomo
-    
-    
-    
      """)
     
     n = input(" 1- Scan Network    \n 2- Vuln Scan      \n 3- Exploit      \n    Quelle option chef : ")
