@@ -8,8 +8,7 @@ sc = nmap.PortScanner()
 
 
 def main():
-    print("""         
-
+    print("""
     
  ██▓      ▄████ ▓█████▄ 
 ▓██▒     ██▒ ▀█▒▒██▀ ██▌
@@ -24,7 +23,7 @@ def main():
                     by LGDMomo
      """)
     
-    n = input(" 1- Scan Network    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adress  \n Choose an option : ")
+    n = input(" 1- Scan Network Ports    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adress \n 5- Network Scanning device \n Choose an option : ")
     if n == '1':
         nmap()
     if n == '2':
@@ -34,6 +33,8 @@ def main():
     
     if n == '4':
         test()
+    if n == '5':
+        scan()
     else:
         print("Entrez une bonne option")
 
@@ -47,7 +48,7 @@ def nmap():
         print("Network Scanning")
         ip = input("Ip ? : ")
         print("Network Ip = ",ip)
-        sc.scan(ip)
+        sc.scan(ip,arguments='-p 21,80,9500,8080,8082,8001,443,22,143,993,5900,5800')
         for host in sc.all_hosts():
             print("-----------------------------------------------------")
             print('Host : %s (%s)' % (host, sc[host].hostname()))
@@ -66,7 +67,7 @@ def nmap():
 def vuln():
     print("Vulnerabilities Scanning")
     ip = input("Ip bg ? : ")
-    print(os.system('nmap - sV --script vuln '+ip))
+    os.system('nmap - sV --script vuln '+ip)
     main()
 
 def test():
@@ -75,7 +76,19 @@ def test():
     os.system('ping '+ip)
     main()
 
-
+def scan():
+        print("Network Scanning")
+        ip = input("Ip ? : ")
+        print("Network Ip = ",ip)
+        sc.scan(ip,arguments='-sn')
+        for host in sc.all_hosts():
+            print("-----------------------------------------------------")
+            print('Device Ip : %s (%s)' % (host, sc[host].hostname()))
+            print('State : %s' % sc[host].state())
+            print('Name : %s' % sc[host].hostnames)
+            
+        print('-----------------------------------------------------')
+        main()
 
 if __name__ == '__main__':
     main()
