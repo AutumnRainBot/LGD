@@ -55,7 +55,7 @@ def nmap():
             for proto in sc[host].all_protocols():
                 lport = sc[host][proto].keys()
                 for port in lport:
-                    if lport == 80 or 20 or 53 or 21 or 80 or 443 or 8082 or 8888 or 9500:
+                    if port == 80 or 20 or 53 or 21 or 80 or 443 or 8082 or 8888 or 9500:
                         print('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
 
                 print('-----------------------------------------------------')
