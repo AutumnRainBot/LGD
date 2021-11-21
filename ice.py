@@ -47,18 +47,18 @@ def nmap():
         print("Network Scanning")
         ip = input("Ip ? : ")
         print("Network Ip = ",ip)
-        sc.scan(ip ,arguments='-p 20,53,21,80,443,8082,8888,9500')
+        sc.scan(ip ,arguments=' -p 20,53,21,80,443,8082,8888,9500')
         for host in sc.all_hosts():
             print("-----------------------------------------------------")
             print('Host : %s (%s)' % (host, sc[host].hostname()))
             print('State : %s' % sc[host].state())
             for proto in sc[host].all_protocols():
+                print('----------')
+                print('Protocol : %s' % proto)
                 lport = sc[host][proto].keys()
                 for port in lport:
-                    if port == 80 or 20 or 53 or 21 or 80 or 443 or 8082 or 8888 or 9500:
-                        print('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
-
-                print('-----------------------------------------------------')
+                        print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
+        print('-----------------------------------------------------')
         main()
 
 
