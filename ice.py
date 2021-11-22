@@ -41,7 +41,7 @@ def main():
     if n == '6':
         nmappp()
     if n == '7':
-        nmappp()
+        auto()
     
     else:
         print("Entrez une bonne option")
@@ -68,8 +68,6 @@ def nmap():
                         print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
                         print("---------------------------")
                         print("\n\n\n\n\n\n\n\n\n\n\n")
-                        if portt == "5900"or "5800":
-                            print("VNC connected object found here is the link : %s:5900 "%host)
                         if portt == "80"or "443"or "8082"or"8888"or"8080":
                             rep = input("Web page found want to open it  [y/n] ? ")
                             if rep =="y":
@@ -126,10 +124,11 @@ def nmappp():
     main()
 
 
-    def auto():
+def auto():
         print("Router / Web Page Finder")
         ip = input("Ip ? : ")
-        print("Network Ip = \n",ip)
+        print("Network Ip = ",ip)
+        print("\n\n\n")
         portt = input("Port ? (80 http , 5900 vnc , 433 https , 21 ftp ) : ")
         print("\n\n\n\n\n\n\n\n\n\n\n")
         sc.scan(ip,arguments=('-p '+portt))
@@ -142,13 +141,12 @@ def nmappp():
                         print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
                         print("---------------------------")
                         print("\n\n\n\n\n\n\n\n\n\n\n")
-                        if portt == "5900"or "5800":
-                            print("VNC connected object found here is the link : %s:5900 "%host)
                         if portt == "80"or "443"or "8082"or"8888"or"8080":
                                if  webbrowser.open("http://%s:80"%host):
                                    print("Page succesfully loaded")
                                    main()
     
+        
 
 if __name__ == '__main__':
     main()
