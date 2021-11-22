@@ -2,8 +2,6 @@
 import nmap
 import os
 
-os.system('sudo apt install python3-pip')
-os.system('pip3 install python-nmap')
 sc = nmap.PortScanner()
 
 
@@ -23,7 +21,7 @@ def main():
                     by LGDMomo
      """)
     
-    n = input(" 1- Scan Network Ports    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adress \n 5- Network Scanning device \n Choose an option : ")
+    n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adress \n 5- Network Scanning device \n Choose an option : ")
     if n == '1':
         nmap()
     if n == '2':
@@ -48,25 +46,26 @@ def nmap():
         print("Network Scanning")
         ip = input("Ip ? : ")
         print("Network Ip = ",ip)
-        sc.scan(ip,arguments='-p 21,80,9500,8080,8082,8001,443,22,143,993,5900,5800')
+        port = input("Port ? (80 http , 5900 vnc , 433 https , 21 ftp ) : ")
+        print("\n\n\n\n\n\n\n\n\n\n\n")
+        sc.scan(ip,arguments=('-p '+port))
         for host in sc.all_hosts():
-            print("-----------------------------------------------------")
-            print('Host : %s (%s)' % (host, sc[host].hostname()))
-            print('State : %s' % sc[host].state())
             for proto in sc[host].all_protocols():
-                print('----------')
-                print('Protocol : %s' % proto)
                 lport = sc[host][proto].keys()
                 for port in lport:
+                    if sc[host][proto][port]['state'] == "open":
+                        print('Host : %s %s' % (host, sc[host].hostname()))
                         print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
-        print('-----------------------------------------------------')
+                        print("---------------------------")
+                        print("\n\n\n\n\n\n\n\n\n\n\n")
+    
         main()
 
 
 
 def vuln():
     print("Vulnerabilities Scanning")
-    ip = input("Ip bg ? : ")
+    ip = input("Ip ? : ")
     os.system('nmap - sV --script vuln '+ip)
     main()
 
