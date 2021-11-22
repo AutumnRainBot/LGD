@@ -21,7 +21,7 @@ def main():
                     by LGDMomo
      """)
     
-    n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adress \n 5- Network Scanning device \n Choose an option : ")
+    n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adresse \n 5- Network Scanning device \n 6- Classic Scan \n Choose an option : ")
     if n == '1':
         nmap()
     if n == '2':
@@ -33,6 +33,8 @@ def main():
         test()
     if n == '5':
         scan()
+    if n == '6':
+        nmappp()
     else:
         print("Entrez une bonne option")
 
@@ -84,10 +86,25 @@ def scan():
             print("-----------------------------------------------------")
             print('Device Ip : %s (%s)' % (host, sc[host].hostname()))
             print('State : %s' % sc[host].state())
-            print('Name : %s' % sc[host].hostnames)
+
             
         print('-----------------------------------------------------')
         main()
+
+
+def nmappp():
+    print("Clasic nmap scan")
+    ip = input("Ip ? = ")
+    sc.scan(ip,arguments='-F')
+    for host in sc.all_hosts():
+            for proto in sc[host].all_protocols():
+                lport = sc[host][proto].keys()
+                for port in lport:
+                        print('Host : %s %s' % (host, sc[host].hostname()))
+                        print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
+                        print("---------------------------")
+                        print("\n\n\n\n\n\n\n\n\n\n\n")
+
 
 if __name__ == '__main__':
     main()
