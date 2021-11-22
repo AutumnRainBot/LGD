@@ -26,7 +26,7 @@ def main():
                     by LGDMomo
      """)
     
-    n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adresse \n 5- Network Scanning device \n 6- Classic Scan \n Choose an option : ")
+    n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adresse \n 5- Network Scanning device \n 6- Classic Scan \n 7- Hack Automatisation \n Choose an option : ")
     if n == '1':
         nmap()
     if n == '2':
@@ -39,6 +39,8 @@ def main():
     if n == '5':
         scan()
     if n == '6':
+        nmappp()
+    if n == '7':
         nmappp()
     
     else:
@@ -66,6 +68,8 @@ def nmap():
                         print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
                         print("---------------------------")
                         print("\n\n\n\n\n\n\n\n\n\n\n")
+                        if portt == "5900"or "5800":
+                            print("VNC connected object found here is the link : %s:5900 "%host)
                         if portt == "80"or "443"or "8082"or"8888"or"8080":
                             rep = input("Web page found want to open it  [y/n] ? ")
                             if rep =="y":
@@ -109,16 +113,42 @@ def scan():
 def nmappp():
     print("Clasic nmap scan")
     ip = input("Ip ? = ")
-    sc.scan(ip,arguments='-F')
+    sc.scan(ip)
     for host in sc.all_hosts():
             for proto in sc[host].all_protocols():
                 lport = sc[host][proto].keys()
                 for port in lport:
+                        print('Host : %s ' % (host))
+                        print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
+                        print("---------------------------")
+                        print("\n\n\n\n\n\n\n\n\n\n\n")
+        
+    main()
+
+
+    def auto():
+        print("Router / Web Page Finder")
+        ip = input("Ip ? : ")
+        print("Network Ip = \n",ip)
+        portt = input("Port ? (80 http , 5900 vnc , 433 https , 21 ftp ) : ")
+        print("\n\n\n\n\n\n\n\n\n\n\n")
+        sc.scan(ip,arguments=('-p '+portt))
+        for host in sc.all_hosts():
+            for proto in sc[host].all_protocols():
+                lport = sc[host][proto].keys()
+                for port in lport:
+                    if sc[host][proto][port]['state'] == "open":
                         print('Host : %s %s' % (host, sc[host].hostname()))
                         print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
                         print("---------------------------")
                         print("\n\n\n\n\n\n\n\n\n\n\n")
-
+                        if portt == "5900"or "5800":
+                            print("VNC connected object found here is the link : %s:5900 "%host)
+                        if portt == "80"or "443"or "8082"or"8888"or"8080":
+                               if  webbrowser.open("http://%s:80"%host):
+                                   print("Page succesfully loaded")
+                                   main()
+    
 
 if __name__ == '__main__':
     main()
