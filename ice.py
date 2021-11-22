@@ -1,11 +1,16 @@
-
+import webbrowser
 import nmap
 import os
+
+
 
 sc = nmap.PortScanner()
 
 
+
+
 def main():
+    
     print("""
     
  ██▓      ▄████ ▓█████▄ 
@@ -35,6 +40,7 @@ def main():
         scan()
     if n == '6':
         nmappp()
+    
     else:
         print("Entrez une bonne option")
 
@@ -48,9 +54,9 @@ def nmap():
         print("Network Scanning")
         ip = input("Ip ? : ")
         print("Network Ip = ",ip)
-        port = input("Port ? (80 http , 5900 vnc , 433 https , 21 ftp ) : ")
+        portt = input("Port ? (80 http , 5900 vnc , 433 https , 21 ftp ) : ")
         print("\n\n\n\n\n\n\n\n\n\n\n")
-        sc.scan(ip,arguments=('-p '+port))
+        sc.scan(ip,arguments=('-p '+portt))
         for host in sc.all_hosts():
             for proto in sc[host].all_protocols():
                 lport = sc[host][proto].keys()
@@ -60,8 +66,16 @@ def nmap():
                         print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
                         print("---------------------------")
                         print("\n\n\n\n\n\n\n\n\n\n\n")
+                        if portt == "80"or "443"or "8082"or"8888"or"8080":
+                            rep = input("Web page found want to open it  [y/n] ? ")
+                            if rep =="y":
+                               if  webbrowser.open("http://%s:80"%host):
+                                   print("Page succesfully loaded")
+                                   main()
+                            
+
     
-        main()
+        
 
 
 
