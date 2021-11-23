@@ -10,7 +10,7 @@ sc = nmap.PortScanner()
 
 
 def main():
-    
+    os.system('pip3 install python-nmap')
     print("""
     
  ██▓      ▄████ ▓█████▄ 
@@ -26,7 +26,7 @@ def main():
                     by LGDMomo
      """)
     
-    n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adresse \n 5- Network Scanning device \n 6- Classic Scan \n 7- Hack Automatisation \n Choose an option : ")
+    n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adresse \n 5- Network Scanning device \n 6- Classic Scan \n 7- Hack Automatisation \n 8- Auto Hack Matteo \n Choose an option : ")
     if n == '1':
         nmap()
     if n == '2':
@@ -42,7 +42,8 @@ def main():
         nmappp()
     if n == '7':
         auto()
-    
+    if n == '8':
+        matteoice()
     else:
         print("Entrez une bonne option")
 
@@ -58,7 +59,10 @@ def nmap():
         print("Network Ip = ",ip)
         portt = input("Port ? (80 http , 5900 vnc , 433 https , 21 ftp ) : ")
         print("\n\n\n\n\n\n\n\n\n\n\n")
+        print("Loading please wait . . .")
         sc.scan(ip,arguments=('-p '+portt))
+        print("\n\n\n\n\n")
+        
         for host in sc.all_hosts():
             for proto in sc[host].all_protocols():
                 lport = sc[host][proto].keys()
@@ -74,11 +78,80 @@ def nmap():
                                if  webbrowser.open("http://%s:80"%host):
                                    print("Page succesfully loaded")
                                    main()
+                        else:
+                            print("No Open Ports Were Found")
+                            main()
+                            
+                                   
+                            
                             
 
     
         
 
+def matteoice():
+        print("Matteo Connection")
+        ip1 = ("192.168.8.1/24")
+        ip2 = ("192.168.9.1/24")
+        ip3 = ("192.168.10.1/24")
+        ip4 = ("192.168.11.1/24")
+        print("\n\n"+ip1+" First Main Router\n")
+        print(ip2+" Seconde Main Router\n")
+        print(ip3+" Third Main Router\n")
+        print(ip4+" Fourth Main Router\n")
+        print("\n\n\n")
+        print("Loading please wait . . .")
+        print("\n\n\n\n\n\n\n")
+        sc.scan(ip1,arguments=('-p 80,5900'))
+        for host in sc.all_hosts():
+            for proto in sc[host].all_protocols():
+                lport = sc[host][proto].keys()
+                for port in lport:
+                    if sc[host][proto][port]['state'] == "open":
+                        print('Host : %s %s' % (host, sc[host].hostname()))
+                        print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
+                        print("---------------------------")
+                        print("\n\n\n\n\n\n\n\n\n\n\n")
+        sc.scan(ip1,arguments=('-p 80,5900'))
+        for host in sc.all_hosts():
+            for proto in sc[host].all_protocols():
+                lport = sc[host][proto].keys()
+                for port in lport:
+                    if sc[host][proto][port]['state'] == "open":
+                        print('Host : %s %s' % (host, sc[host].hostname()))
+                        print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
+                        print("---------------------------")
+                        print("\n\n\n\n\n\n\n\n\n\n\n")
+        sc.scan(ip2,arguments=('-p 80,5900'))
+        for host in sc.all_hosts():
+            for proto in sc[host].all_protocols():
+                lport = sc[host][proto].keys()
+                for port in lport:
+                    if sc[host][proto][port]['state'] == "open":
+                        print('Host : %s %s' % (host, sc[host].hostname()))
+                        print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
+                        print("---------------------------")
+                        print("\n\n\n\n\n\n\n\n\n\n\n")
+        sc.scan(ip3,arguments=('-p 80,5900'))
+        for host in sc.all_hosts():
+            for proto in sc[host].all_protocols():
+                lport = sc[host][proto].keys()
+                for port in lport:
+                    if sc[host][proto][port]['state'] == "open":
+                        print('Host : %s %s' % (host, sc[host].hostname()))
+                        print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
+                        print("---------------------------")
+                        print("\n\n\n\n\n\n\n\n\n\n\n")
+        sc.scan(ip4,arguments=('-p 80,5900'))
+        for host in sc.all_hosts():
+            for proto in sc[host].all_protocols():
+                lport = sc[host][proto].keys()
+                for port in lport:
+                    if sc[host][proto][port]['state'] == "open":
+                        print('Host : %s %s' % (host, sc[host].hostname()))
+                        print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
+                        print("---------------------------")
+                        print("\n\n\n\n\n\n\n\n\n\n\n")
 
 
 def vuln():
@@ -97,7 +170,10 @@ def scan():
         print("Network Scanning")
         ip = input("Ip ? : ")
         print("Network Ip = ",ip)
+        print("\n\n\n\n\n")
+        print("Loading please wait . . .")
         sc.scan(ip,arguments='-sn')
+        
         for host in sc.all_hosts():
             print("-----------------------------------------------------")
             print('Device Ip : %s (%s)' % (host, sc[host].hostname()))
@@ -111,6 +187,8 @@ def scan():
 def nmappp():
     print("Clasic nmap scan")
     ip = input("Ip ? = ")
+    print("\n\n\n\n\n")
+    print("Loading please wait . . .")
     sc.scan(ip)
     for host in sc.all_hosts():
             for proto in sc[host].all_protocols():
@@ -131,7 +209,10 @@ def auto():
         print("\n\n\n")
         portt = input("Port ? (80 http , 5900 vnc , 433 https , 21 ftp ) : ")
         print("\n\n\n\n\n\n\n\n\n\n\n")
+        print("\n\n\n\n\n")
+        print("Loading please wait . . .")
         sc.scan(ip,arguments=('-p '+portt))
+        
         for host in sc.all_hosts():
             for proto in sc[host].all_protocols():
                 lport = sc[host][proto].keys()
@@ -145,6 +226,9 @@ def auto():
                                if  webbrowser.open("http://%s:80"%host):
                                    print("Page succesfully loaded")
                                    main()
+                        else:
+                            print("No Open Ports Were Found")
+                            main()
     
         
 
