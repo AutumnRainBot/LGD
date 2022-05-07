@@ -10,7 +10,6 @@ sc = nmap.PortScanner()
 
 
 def main():
-    os.system('pip3 install python-nmap')
     print("""
     
  ██▓      ▄████ ▓█████▄ 
