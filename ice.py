@@ -231,6 +231,16 @@ def auto():
     
         
 
+
+def list()
+        print("Router / Web Page Finder")
+        ip = input("Ip ? : ")
+        print("Network Ip = ",ip)
+        print("\n\n\n")
+        os.system('nmap -sn '+ip)
+
+
+
+
 if __name__ == '__main__':
     main()
-
