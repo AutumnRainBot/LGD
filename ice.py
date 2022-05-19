@@ -11,18 +11,16 @@ sc = nmap.PortScanner()
 
 def main():
     print("""
-    
- ██▓      ▄████ ▓█████▄ 
-▓██▒     ██▒ ▀█▒▒██▀ ██▌
-▒██░    ▒██░▄▄▄░░██   █▌
-▒██░    ░▓█  ██▓░▓█▄   ▌
-░██████▒░▒▓███▀▒░▒████▓ 
-░ ▒░▓  ░ ░▒   ▒  ▒▒▓  ▒ 
-░ ░ ▒  ░  ░   ░  ░ ▒  ▒ 
-  ░ ░   ░ ░   ░  ░ ░  ░ 
-    ░  ░      ░    ░    
-                 ░      
-                    by LGDMomo
+
+    ██╗██████╗ ███╗   ███╗ █████╗ 
+    ██║██╔══██╗████╗ ████║██╔══██╗
+    ██║██████╔╝██╔████╔██║███████║
+    ██║██╔══██╗██║╚██╔╝██║██╔══██║
+    ██║██║  ██║██║ ╚═╝ ██║██║  ██║
+    ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝
+                              
+     
+                    by moha.irma (tro ez :flushed:)
      """)
     
     n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adresse \n 5- Network Scanning device \n 6- Classic Scan \n 7- Hack Automatisation \n 8- Auto Hack Matteo \n 9- List All Device On Network \n Choose an option : ")
