@@ -25,7 +25,7 @@ def main():
                     by LGDMomo
      """)
     
-    n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adresse \n 5- Network Scanning device \n 6- Classic Scan \n 7- Hack Automatisation \n 8- Auto Hack Matteo \n Choose an option : ")
+    n = input(" 1- Scan Network Port    \n 2- Vulnerabilities Scanning      \n 3- Exploit Vulnerabilities    \n 4- Ping Adresse \n 5- Network Scanning device \n 6- Classic Scan \n 7- Hack Automatisation \n 8- Auto Hack Matteo \n 9- List All Device On Network \n Choose an option : ")
     if n == '1':
         nmap()
     if n == '2':
@@ -43,6 +43,8 @@ def main():
         auto()
     if n == '8':
         matteoice()
+    if n == '9':
+        liste()
     else:
         print("Entrez une bonne option")
 
@@ -232,7 +234,7 @@ def auto():
         
 
 
-def list()
+def liste():
         print("Router / Web Page Finder")
         ip = input("Ip ? : ")
         print("Network Ip = ",ip)
