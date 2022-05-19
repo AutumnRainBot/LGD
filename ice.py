@@ -235,7 +235,7 @@ def auto():
 
 
 def liste():
-        print("Router / Web Page Finder")
+        print("List All Device on Network")
         ip = input("Ip ? : ")
         print("Network Ip = ",ip)
         print("\n\n\n")
