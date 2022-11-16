@@ -2,12 +2,7 @@ import webbrowser
 import nmap
 import os
 
-
-
 sc = nmap.PortScanner()
-
-
-
 
 def main():
     print("""
@@ -34,12 +29,6 @@ def main():
         liste()
     else:
         print("Entrez une bonne option")
-
-
-
-
-
-
 
 def nmap():
         print("Network Scanning")
@@ -89,13 +78,10 @@ def scan():
         print("\n\n\n\n\n")
         print("Loading please wait . . .")
         sc.scan(ip,arguments='-sn')
-        
         for host in sc.all_hosts():
             print("-----------------------------------------------------")
             print('Device Ip : %s (%s)' % (host, sc[host].hostname()))
             print('State : %s' % sc[host].state())
-
-            
         print('-----------------------------------------------------')
         main()
 
@@ -114,9 +100,7 @@ def nmappp():
                         print ('port : %s\tstate : %s' % (port, sc[host][proto][port]['state']))
                         print("---------------------------")
                         print("\n\n\n\n\n\n\n\n\n\n\n")
-        
     main()
-
 
 def auto():
         print("Router / Web Page Finder")
@@ -145,10 +129,6 @@ def auto():
                         else:
                             print("No Open Ports Were Found")
                             main()
-    
-        
-
-
 def liste():
         print("List All Device on Network")
         ip = input("Ip ? : ")
